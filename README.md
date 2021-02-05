@@ -82,7 +82,7 @@ Email ini-options:
 
 *Sample Report*
 
-<img src="pytest_email.png" alt="pytest_email.png">
+<img src="https://github.com/txu2k8/pytest-smtp/tree/main/docs/pytest_email.jpg" alt="pytest_email.jpg">
 
 ---
 
