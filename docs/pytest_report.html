@@ -428,25 +428,25 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
     notFoundMessage.hidden = !allRowsHidden;
 }
 </script>
-    <h1>Html Report</h1>
-    <p>Report generated on 04-Feb-2021 at 17:59:46 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
+    <h1>pytest_report.html</h1>
+    <p>Report generated on 07-Feb-2021 at 16:07:47 by <a href="https://pypi.python.org/pypi/pytest-html">pytest-html</a> v3.1.1</p>
     <h2>Environment</h2>
     <table id="environment">
       <tr>
         <td>Packages</td>
-        <td>{"pluggy": "0.13.1", "py": "1.9.0", "pytest": "6.0.1"}</td></tr>
+        <td>{"pluggy": "0.13.1", "py": "1.10.0", "pytest": "6.2.2"}</td></tr>
       <tr>
         <td>Platform</td>
-        <td>Linux-5.4.0-47-generic-x86_64-with-glibc2.29</td></tr>
+        <td>Windows-10-10.0.18362-SP0</td></tr>
       <tr>
         <td>Plugins</td>
-        <td>{"Faker": "4.17.1", "aggreport": "0.1.4", "html": "3.1.1", "instafail": "0.4.2", "metadata": "1.11.0", "repeat": "0.9.1"}</td></tr>
+        <td>{"html": "3.1.1", "metadata": "1.11.0", "repeat": "0.9.1", "smtp": "0.1"}</td></tr>
       <tr>
         <td>Python</td>
-        <td>3.8.5</td></tr></table>
+        <td>3.9.0</td></tr></table>
     <h2>Summary</h2>
-    <p>2 tests ran in 223.84 seconds. </p>
-    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">2 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">0 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
+    <p>4 tests ran in 0.07 seconds. </p>
+    <p class="filter" hidden="true">(Un)check the boxes to filter the results.</p><input checked="true" class="filter" data-test-result="passed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="passed">2 passed</span>, <input checked="true" class="filter" data-test-result="skipped" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="skipped">0 skipped</span>, <input checked="true" class="filter" data-test-result="failed" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="failed">2 failed</span>, <input checked="true" class="filter" data-test-result="error" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="error">0 errors</span>, <input checked="true" class="filter" data-test-result="xfailed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xfailed">0 expected failures</span>, <input checked="true" class="filter" data-test-result="xpassed" disabled="true" hidden="true" name="filter_checkbox" onChange="filterTable(this)" type="checkbox"/><span class="xpassed">0 unexpected passes</span>
     <h2>Results</h2>
     <table id="results-table">
       <thead id="results-table-head">
@@ -457,11 +457,29 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
           <th class="sortable links" col="links">Links</th></tr>
         <tr hidden="true" id="not-found-message">
           <th colspan="4">No results found. Try to check the filters</th></tr></thead>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">test_simple.py::test_file2_method1[1-2]</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">def test_file2_method1():<br/>        x = 5<br/>        y = 6<br/>        assert x + 1 == y, &quot;test failed&quot;<br/>&gt;       assert x == y, &quot;test failed because x=&quot; + str(x) + &quot; y=&quot; + str(y)<br/><span class="error">E       AssertionError: test failed because x=5 y=6</span><br/><span class="error">E       assert 5 == 6</span><br/><br/>tests\test_simple.py:8: AssertionError<br/></div></td></tr></tbody>
+      <tbody class="failed results-table-row">
+        <tr>
+          <td class="col-result">Failed</td>
+          <td class="col-name">test_simple.py::test_file2_method1[2-2]</td>
+          <td class="col-duration">0.00</td>
+          <td class="col-links"></td></tr>
+        <tr>
+          <td class="extra" colspan="4">
+            <div class="log">def test_file2_method1():<br/>        x = 5<br/>        y = 6<br/>        assert x + 1 == y, &quot;test failed&quot;<br/>&gt;       assert x == y, &quot;test failed because x=&quot; + str(x) + &quot; y=&quot; + str(y)<br/><span class="error">E       AssertionError: test failed because x=5 y=6</span><br/><span class="error">E       assert 5 == 6</span><br/><br/>tests\test_simple.py:8: AssertionError<br/></div></td></tr></tbody>
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">src/testcases/stress/test_s3.py::TestS3::test_upload</td>
-          <td class="col-duration">96.31</td>
+          <td class="col-name">test_simple.py::test_file2_method2[1-2]</td>
+          <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">
@@ -469,8 +487,8 @@ function filterTable(elem) { // eslint-disable-line no-unused-vars
       <tbody class="passed results-table-row">
         <tr>
           <td class="col-result">Passed</td>
-          <td class="col-name">src/testcases/stress/test_s3.py::TestS3::test_upload_download</td>
-          <td class="col-duration">127.47</td>
+          <td class="col-name">test_simple.py::test_file2_method2[2-2]</td>
+          <td class="col-duration">0.00</td>
           <td class="col-links"></td></tr>
         <tr>
           <td class="extra" colspan="4">

@@ -1,7 +1,6 @@
 # pytest-smtp
 A plugin for send email with pytest execution result once execution is completed
 
----
 
 ### How it works:
 
@@ -9,7 +8,6 @@ A plugin for send email with pytest execution result once execution is completed
 - Build html template
 - Send's email for respective recipients
 
----
 
 ### How to use in project:
 

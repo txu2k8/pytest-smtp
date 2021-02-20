@@ -184,11 +184,15 @@ def pytest_terminal_summary(terminalreporter, config):
         if attachments:
             attachments = attachments.split(',')
 
+        with open(attachments[0], encoding='utf-8') as f:
+            body = f.read()
+
         send_email(subject, body, receivers, attachments,
                    smtp_host=smtp_host, smtp_port=smtp_port, smtp_user=smtp_user, smtp_pwd=smtp_pwd, smtp_ssl=smtp_ssl)
 
 
 def send_email(subject, body, receivers, attachments=None, **kwargs):
+    print("Send email to {} ...".format(receivers))
     smtp_host = kwargs.get('smtp_host') or os.getenv('SMTP_HOST')
     smtp_port = kwargs.get('smtp_port') or os.getenv('SMTP_PORT')
     smtp_user = kwargs.get('smtp_user') or os.getenv('SMTP_USER')
@@ -213,7 +217,6 @@ def send_email(subject, body, receivers, attachments=None, **kwargs):
     msg['Subject'] = subject
     msg['From'] = smtp_user
     msg['To'] = ','.join(receivers)
-
     msg.attach(MIMEText(body, 'html', 'utf-8'))
 
     if attachments:
@@ -224,7 +227,8 @@ def send_email(subject, body, receivers, attachments=None, **kwargs):
                 try:
                     att = MIMEText(open(file_path, 'rb').read(), 'base64', 'utf-8')
                 except Exception as ex:
-                    logging.exception(ex)
+                    # logging.exception(ex)
+                    print(ex)
                 else:
                     att['Content-Type'] = 'application/octet-stream'
                     att["Content-Disposition"] = f'attachment; filename={os.path.basename(file_path)}'
@@ -235,7 +239,8 @@ def send_email(subject, body, receivers, attachments=None, **kwargs):
         server.sendmail(smtp_user, receivers, msg.as_string())
         print("Send email to %s done!" % ','.join(receivers))
     except Exception as ex:
-        logging.exception(ex)
+        # logging.exception(ex)
+        print(ex)
 
 
 if __name__ == '__main__':

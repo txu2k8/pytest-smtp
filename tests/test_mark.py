@@ -1,7 +1,7 @@
 import pytest
 
 
-@pytest.mark.set1
+# @pytest.mark.set1
 def test_file1_method1():
     x = 5
     y = 6
@@ -9,7 +9,7 @@ def test_file1_method1():
     assert x == y, "test failed because x=" + str(x) + " y=" + str(y)
 
 
-@pytest.mark.set2
+# @pytest.mark.set2
 def test_file1_method2():
     x = 5
     y = 6
