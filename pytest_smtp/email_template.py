@@ -5,11 +5,11 @@
 @Time  : 2021/2/5 16:41
 @Author: Tao.Xu
 @Email : tao.xu2008@outlook.com
-Define report template here
+Define email report template here
 """
 
 
-REPORT_TEMPLATE = r"""
+EMAIL_REPORT_TEMPLATE = r"""
 <!-- This template prepare for a email report with 4+ tables, No JavaScript -->
 <!-- <?xml version="1.0" encoding="UTF-8"?> -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -32,7 +32,14 @@ REPORT_TEMPLATE = r"""
         /* -- heading ---------------------------------------------------------------------- */
         h1 {
             font-size: 16pt;
-            color: gray;
+        }
+        
+        .h_green {
+            color: #6c6;
+        }
+        
+        .h_red {
+            color: #FF0000;
         }
 
         .heading {
@@ -150,17 +157,17 @@ REPORT_TEMPLATE = r"""
         }
 
         .failCase {
-            color: #c60;
+            color: #FF0000;
             font-weight: bold;
         }
 
         .errorCase {
-            color: #c00;
+            color: #900000;
             font-weight: bold;
         }
-
+        
         .skipCase {
-            color: #f0a20d;
+            color: #F0A20D;
             font-weight: bold;
         }
 
@@ -179,14 +186,14 @@ REPORT_TEMPLATE = r"""
 <body>
     <!-- Title -->
     <div class='heading'>
-        <h1> %(Title)s </h1>
+        <h1 class=%(TitleColor)s> %(Title)s </h1>
     </div>
 
     <!-- Test Env Information: -->
-    <b> <span lang="EN-US" style="font-size:14.0pt">Description:</span> </b>
+    <b> <span lang="EN-US" style="font-size:14.0pt">Environment:</span> </b>
     <table id='env_table' class="table table-condensed table-bordered table-hover">
         <!-- test ENV Description list -->
-        %(Description)s
+        %(Environment)s
     </table>
     </br>
 
@@ -200,6 +207,7 @@ REPORT_TEMPLATE = r"""
             <col align='right' />
             <col align='right' />
             <col align='right' />
+            <col align='right' />
         </colgroup>
         <tr id='env_table_header' class="text-center success" style="font-weight: bold;font-size: 14px;">
             <td align='center'>NodeName</td>
@@ -208,6 +216,7 @@ REPORT_TEMPLATE = r"""
             <td align='center'>Roles</td>
             <td align='center'>User</td>
             <td align='center'>Password</td>
+            <td align='center'>OS</td>
         </tr>
         <!-- test nodes list -->
         %(Nodes)s
@@ -247,8 +256,8 @@ REPORT_TEMPLATE = r"""
     </table>
     </br>
 
-    <!-- case_table -->
-    <b> <span lang="EN-US" style="font-size:14.0pt">Details:</span> </b>
+    <!-- case_results_table -->
+    <b> <span lang="EN-US" style="font-size:14.0pt">Results:</span> </b>
     <table id='result_table' class="table table-condensed table-bordered table-hover">
         <colgroup>
             <col align='left' />
@@ -262,7 +271,7 @@ REPORT_TEMPLATE = r"""
             <td align='center'>Test Group/Case</td>
             <td align='center'>Status</td>
             <td align='center'>Elapsed Time</td>
-            <td align='center'>Iteration</td>
+            <td align='center'>Loop</td>
         </tr>
         <!-- test case list -->
         %(Results)s

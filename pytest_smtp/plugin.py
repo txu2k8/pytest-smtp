@@ -13,6 +13,16 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import logging
 
+
+
+# Summary
+SUMMARY_COLUMN_HEADERS = ['Total', 'Passed', 'Failed', 'Skipped', 'Pass Rate']
+SUMMARY_COLUMN_HEADER_CLASSES = ['total', 'passed', 'failed', 'skipped', 'rate']
+
+# Results
+RESULTS_COLUMN_HEADERS = ['TestCase', 'Status', 'Elapsed', 'Loop']
+RESULTS_COLUMN_HEADER_CLASSES = ['test_case', 'status', 'elapsed', 'loop']
+
 DEFAULT_EMAIL_SUBJECT = 'Pytest Report'
 DEFAULT_EMAIL_BODY_TPL = '''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -119,6 +129,12 @@ DEFAULT_EMAIL_BODY_TPL = '''<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transit
 </html>'''
 
 
+def pytest_addhooks(pluginmanager):
+    from . import hooks
+
+    pluginmanager.add_hookspecs(hooks)
+
+
 def pytest_addoption(parser):
     group = parser.getgroup('email')
     group.addoption("--send-email", action="store_true", help="Send email when --send-email")
@@ -148,6 +164,10 @@ def pytest_addoption(parser):
 
 
 def pytest_terminal_summary(terminalreporter, config):
+    # from . import email_report
+    # email_report.EmailReport("./report.html", config).generate_report_body()
+
+    print(terminalreporter.stats)
     passed = len(terminalreporter.stats.get('passed', ""))
     failed = len(terminalreporter.stats.get('failed', ""))
     skipped = len(terminalreporter.stats.get('skipped', ""))
@@ -184,8 +204,8 @@ def pytest_terminal_summary(terminalreporter, config):
         if attachments:
             attachments = attachments.split(',')
 
-        with open(attachments[0], encoding='utf-8') as f:
-            body = f.read()
+        # with open(attachments[0], encoding='utf-8') as f:
+        #     body = f.read()
 
         send_email(subject, body, receivers, attachments,
                    smtp_host=smtp_host, smtp_port=smtp_port, smtp_user=smtp_user, smtp_pwd=smtp_pwd, smtp_ssl=smtp_ssl)
