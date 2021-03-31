@@ -1,0 +1,10 @@
+site_name: pytest-smtp
+site_description: A plugin for send email with pytest execution result once execution is completed.
+site_author: Tao Xu
+
+theme: readthedocs
+
+repo_url: https://github.com/txu2k8/pytest-smtp
+
+pages:
+- Home: index.md
